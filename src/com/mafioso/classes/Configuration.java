@@ -14,6 +14,7 @@ public class Configuration {
 	private int numberOfPlayers = 2;
 	private ArrayList<Card> characterList = null;
 	private ArrayList<Card> rolesForGame = new ArrayList<Card>();
+	private boolean isGameReadyToBegin = false;
 	
 	//Character loading variables
 	private static final String CharacterDB = "com/mafioso/classes/resources/CharacterDB.txt";
