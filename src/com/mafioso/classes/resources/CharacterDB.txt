@@ -1,0 +1,5 @@
+Mafia Boss, Leader of the mafia
+Mafioso, Member of the mafia
+Commoner, Commoner
+Cop, cop
+Nurse, nurse
