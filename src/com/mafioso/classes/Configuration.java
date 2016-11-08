@@ -12,25 +12,69 @@ import java.util.Scanner;
 public class Configuration {
 	//Configuration variables
 	private int numberOfPlayers = 2;
-	private ArrayList<Card> characterList = null;
+	private ArrayList<Card> characterList = new ArrayList<Card>();
+	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private ArrayList<Card> rolesForGame = new ArrayList<Card>();
 	private boolean isGameReadyToBegin = false;
+	private Player host = null;
 	
 	//Character loading variables
 	private static final String CharacterDB = "com/mafioso/classes/resources/CharacterDB.txt";
 	private static int dataColumns = 3;
 	
-	public Configuration(){
+	public Configuration(Player host){
+		this.host = host;
 		this.characterList = importCharacters();
 	}
 	
+	//Get host
+	public Player getHost(){
+		return this.host;
+	}
+	
+	public void setHost(int index){
+		if(index>=0 && index<playerList.size()){
+			this.host = playerList.get(index);
+		}
+	}
+	
+	
+	//Number of players
 	public int getNumberOfPlayers(){
 		return this.numberOfPlayers;
 	}
 	public void setNumberOfPlayers(int newNumberOfPlayers){
-		this.numberOfPlayers = newNumberOfPlayers;
+		if(newNumberOfPlayers>0){
+			this.numberOfPlayers = newNumberOfPlayers;
+		}
+		isGameReadyToBegin();
 	}
 	
+	//Player configuration
+	public ArrayList<Player> getPlayerList(){
+		return this.playerList;
+	}
+	public void addToPlayerList(Player user){
+		this.playerList.add(user);
+		isGameReadyToBegin();
+	}
+	public void removePlayerFromList(int index){
+		if(index>=0 && index<playerList.size()){
+			if(this.playerList.get(index).getName().equals(host.getName())){//Replace host if host is removed
+				if(index==0&&playerList.size()>1){
+					host = playerList.get(1);
+				}else if(playerList.size()>1){
+					host = playerList.get(0);
+				}else{
+					host = null;
+				}
+			}
+			this.playerList.remove(index);
+		}
+		isGameReadyToBegin();
+	}
+	
+	//Role Configuration
 	public ArrayList<Card> getRolesForGame(){
 		return this.rolesForGame;
 	}
@@ -39,9 +83,12 @@ public class Configuration {
 		this.rolesForGame.add(newRole);
 	}
 	public void removeRolesForGame(int index){
-		this.rolesForGame.remove(index);
+		if(index>=0 && index<playerList.size()){
+			this.rolesForGame.remove(index);
+		}
 	}
 	
+	//Character List
 	public ArrayList<Card> getCharacterList(){
 		return this.characterList;
 	}
@@ -84,5 +131,14 @@ public class Configuration {
 			in.close();
 		}
 		return characters;
+	}
+	
+	private boolean isGameReadyToBegin(){
+		if(null!=rolesForGame&&null!=playerList && rolesForGame.size() == numberOfPlayers && numberOfPlayers==playerList.size()){
+			isGameReadyToBegin = true;
+		}else{
+			isGameReadyToBegin = false;
+		}
+		return isGameReadyToBegin;
 	}
 }
