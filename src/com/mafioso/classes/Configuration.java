@@ -35,6 +35,7 @@ public class Configuration {
 	public void setHost(int index){
 		if(index>=0 && index<playerList.size()){
 			this.host = playerList.get(index);
+			isGameReadyToBegin();
 		}
 	}
 	
@@ -81,10 +82,12 @@ public class Configuration {
 	
 	public void addRolesForGame(Card newRole){
 		this.rolesForGame.add(newRole);
+		isGameReadyToBegin();
 	}
 	public void removeRolesForGame(int index){
 		if(index>=0 && index<playerList.size()){
 			this.rolesForGame.remove(index);
+			isGameReadyToBegin();
 		}
 	}
 	
@@ -134,11 +137,16 @@ public class Configuration {
 	}
 	
 	private boolean isGameReadyToBegin(){
+		System.out.println(rolesForGame.size() + "-" + numberOfPlayers + "-" + playerList.size());
 		if(null!=rolesForGame&&null!=playerList && rolesForGame.size() == numberOfPlayers && numberOfPlayers==playerList.size()){
 			isGameReadyToBegin = true;
 		}else{
 			isGameReadyToBegin = false;
 		}
 		return isGameReadyToBegin;
+	}
+	
+	public boolean getIsGameReadyToBegin(){
+		return this.isGameReadyToBegin;
 	}
 }

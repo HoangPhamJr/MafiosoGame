@@ -3,20 +3,32 @@ package com.mafioso.classes;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Game {
+public class GameLobby {
 
 	public static void main(String[] args) {
+		establishLoby();
+	}
+	
+	public static Configuration establishLoby(){
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please enter your name: ");
 		Player host = new Player(in.next());
 		Configuration config = new Configuration(host);
 		config.addToPlayerList(host);
+		boolean begin = false;
 		
 		try{
-			getDisplayMessage();
+			getDisplayMessage(config.getIsGameReadyToBegin());
 			String input = in.next();
 			
-			while(!input.equals("exit") || null!=config.getHost()){
+			while(null!=config.getHost()){
+				if(input.equals("exit")){
+					break;
+				}else if(input.equals("begin") && config.getIsGameReadyToBegin()){
+					begin = true;
+					break;
+				}
+				
 				if(input.equals("1")){//List Cards
 					for(Card temp:config.getCharacterList()){
 						System.out.println("Card Number: " + temp.getCardNumber() + ", Card name: " + temp.getName() + ", Card description: " + temp.getDescription());
@@ -76,7 +88,7 @@ public class Game {
 					config.setHost(newHost);
 				}
 				System.out.println();
-				getDisplayMessage();
+				getDisplayMessage(config.getIsGameReadyToBegin());
 				input = in.next();
 			}
 		}catch (Exception e) {//Scanner error
@@ -84,10 +96,17 @@ public class Game {
 		}finally{
 			in.close();
 		}
-		System.out.println("Program Closing");
+		
+		if(begin){
+			System.out.println("Game Starting");
+			return config;
+		}else{
+			System.out.println("Program Closing");
+			return null;
+		}
 	}
 	
-	private static void getDisplayMessage(){
+	private static void getDisplayMessage(boolean isGameReadyToBegin){
 		System.out.println("Enter 1 to display roles, "
 				+ "2 to see players, "
 				+ "3 to set number of players, "
@@ -100,5 +119,8 @@ public class Game {
 				+ "10 to get host, "
 				+ "11 to set host, "
 				+ "and exit to leave");
+		if(isGameReadyToBegin){
+			System.out.println("Game is ready to begin, enter begin to start: ");
+		}
 	}
 }
