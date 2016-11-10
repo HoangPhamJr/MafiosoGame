@@ -21,7 +21,7 @@ public class GameLobby {
 			getDisplayMessage(config.getIsGameReadyToBegin());
 			String input = in.next();
 			
-			while(null!=config.getHost()){
+			while(null!=config.getHost()&&config.getNumberOfPlayers()>0){
 				if(input.equals("exit")){
 					break;
 				}else if(input.equals("begin") && config.getIsGameReadyToBegin()){
@@ -88,6 +88,10 @@ public class GameLobby {
 					config.setHost(newHost);
 				}
 				System.out.println();
+				
+				if(null==config.getHost() || config.getNumberOfPlayers()<=0){
+					break;
+				}
 				getDisplayMessage(config.getIsGameReadyToBegin());
 				input = in.next();
 			}

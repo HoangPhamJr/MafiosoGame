@@ -45,7 +45,7 @@ public class Configuration {
 		return this.numberOfPlayers;
 	}
 	public void setNumberOfPlayers(int newNumberOfPlayers){
-		if(newNumberOfPlayers>0){
+		if(newNumberOfPlayers>0 && newNumberOfPlayers<12){
 			this.numberOfPlayers = newNumberOfPlayers;
 		}
 		isGameReadyToBegin();
@@ -56,7 +56,9 @@ public class Configuration {
 		return this.playerList;
 	}
 	public void addToPlayerList(Player user){
-		this.playerList.add(user);
+		if(isGameReadyToBegin==false && playerList.size()<numberOfPlayers){
+			this.playerList.add(user);
+		}
 		isGameReadyToBegin();
 	}
 	public void removePlayerFromList(int index){
@@ -73,6 +75,15 @@ public class Configuration {
 			this.playerList.remove(index);
 		}
 		isGameReadyToBegin();
+	}
+	public void assignPlayerRole(int index, Card role){
+		this.playerList.get(index).setRole(role);
+	}
+	public void removePlayerRole(int index, Card role){
+		this.playerList.get(index).removeRole();
+	}
+	public Player getPlayer(int index){
+		return this.playerList.get(index);
 	}
 	
 	//Role Configuration

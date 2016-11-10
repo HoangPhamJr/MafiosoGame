@@ -17,6 +17,10 @@ public class Player {
 		this.role = newRole;
 	}
 	
+	public void removeRole(){
+		this.role = null;
+	}
+	
 	public Card getRole(){
 		return this.role;
 	}
