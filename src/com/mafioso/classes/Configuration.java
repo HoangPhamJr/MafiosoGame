@@ -12,6 +12,12 @@ import java.util.Scanner;
 public class Configuration {
 	//Configuration variables
 	private int numberOfPlayers = 2;
+	private int timePerTurn = 15;
+	private int timeForDiscussion = 30;
+	private int timeToDisplayText = 3;
+	private int transitionTime = 3;
+	private int storyTime = 10;
+	private boolean displayTextInstantly = false;
 	private ArrayList<Card> characterList = new ArrayList<Card>();
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private ArrayList<Card> rolesForGame = new ArrayList<Card>();
@@ -39,6 +45,42 @@ public class Configuration {
 		}
 	}
 	
+	//Display time instantly
+	public boolean getDisplayTextInstantly(){
+		return this.displayTextInstantly;
+	}
+	public void setDisplayTextInstantly(boolean newDisplayTextInstantly){
+		this.displayTextInstantly = newDisplayTextInstantly;
+	}
+	public int getTimeToDisplayText(){
+		return this.timeToDisplayText;
+	}
+	public int getTransitionTime(){
+		return this.transitionTime;
+	}
+	public int getStoryTime(){
+		return this.storyTime;
+	}
+	
+	//Time for discussion
+	public int getTimeForDiscussion(){
+		return this.timeForDiscussion;
+	}
+	public void setTimeForDiscussion(int newTimeForDiscussion){
+		if(newTimeForDiscussion > 0 && newTimeForDiscussion < 60){
+			this.timeForDiscussion = newTimeForDiscussion;
+		}
+	}
+	
+	//Time per turn
+	public int getTimePerTurn(){
+		return this.timePerTurn;
+	}
+	public void setTimePerTurn(int newTimePerTurn){
+		if(newTimePerTurn > 0 && newTimePerTurn < 30){
+			this.timePerTurn = newTimePerTurn;
+		}
+	}
 	
 	//Number of players
 	public int getNumberOfPlayers(){

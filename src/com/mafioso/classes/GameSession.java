@@ -8,7 +8,7 @@ public class GameSession {
 	public GameSession(Configuration newConfig){
 		this.config = newConfig;
 		assignRoles();
-		
+		NarrationEngine narration = new NarrationEngine(this.config);
 	}
 	public static void main(String[] args){
 		test();
@@ -21,8 +21,8 @@ public class GameSession {
 			int random = (int)(Math.random() * rolesForGame.size());
 			config.assignPlayerRole(counter, rolesForGame.remove(random));
 			//Debug
-			//System.out.println(random);
-			//System.out.println("Player: " + config.getPlayer(counter).getName() + " is given the role: " + config.getPlayer(counter).getRole().getName());
+			System.out.println(random);
+			System.out.println("Player: " + config.getPlayer(counter).getName() + " is given the role: " + config.getPlayer(counter).getRole().getName());
 			counter++;
 		}
 	}

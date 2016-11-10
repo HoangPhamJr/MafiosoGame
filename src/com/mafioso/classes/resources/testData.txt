@@ -1,0 +1,30 @@
+Hoang
+3
+7
+7
+Melissa
+7
+Nathanie
+7
+Tim Sum
+7
+Candice
+7
+Ben
+7
+Sam Chang
+4
+0
+4
+1
+4
+2
+4
+3
+4
+4
+4
+3
+4
+2
+begin

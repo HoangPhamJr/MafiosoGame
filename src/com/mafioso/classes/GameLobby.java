@@ -1,16 +1,20 @@
 package com.mafioso.classes;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class GameLobby {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		establishLoby();
 	}
 	
-	public static Configuration establishLoby(){
-		Scanner in = new Scanner(System.in);
+	public static Configuration establishLoby() throws FileNotFoundException{
+		//TODO remove testing exception
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		Scanner in = new Scanner(new File(classloader.getResource("com/mafioso/classes/resources/testData.txt").getFile()));//System.in);
 		System.out.println("Please enter your name: ");
 		Player host = new Player(in.next());
 		Configuration config = new Configuration(host);
