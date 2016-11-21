@@ -1,0 +1,50 @@
+{
+    "ui": {
+        "welcome to mafioso": "Welcome to Mafioso",
+        "new game": "New Game",
+        "join game": "Join Game",
+        "waiting for players": "Waiting For Players...",
+        "access code": "Access code",
+        "join my mafioso game": "Join my Mafioso game!",
+        "start game": "Start Game",
+        "leave game": "Leave Game",
+        "show hide": "show/hide",
+        "you are team mafia": "You are on team MAFIA",
+        "you are team common": "You are on team CIVILIAN",
+        "team": "Team",
+        "your role": "Your role",
+        "your description": "Your role description",
+        "players": "Players",
+        "first": "1<span>st</span>",
+        "roles": "Roles",
+        "end game": "End Game",
+        "enter your name": "Enter your name",
+        "create game": "Create",
+        "back": "Back",
+        "enter an access code": "Enter an access code",
+        "invalid access code": "Sorry, no game was found with the access code you provided!",
+        "join": "Join",
+        "footer": "<a href='http://kolhezen.com' target='_blank'>Mafia</a> designed by HP"
+    },
+    "locations": {
+        "onePlayer": "onePlayer",
+        "roles": {
+            "name": {
+                "mafiaBoss": "Mafia Boss",
+                "commoner": "Commoner",
+                "medic": "Medic",
+                "cop": "Cop",
+                "mafioso": "Mafioso",
+                "wannabe": "Mafioso wannabe"
+            },
+            "description": {
+                "mafiaBoss": "Head of the mafia",
+                "commoner": "Just a simple commoner",
+                "medic": "Can save someone's life including yourself",
+                "cop": "Can take out one player",
+                "mafioso": "Lead assistant of the mafia boss",
+                "wannabe": "Mafioso wannabe... try harder next time"
+            } 
+        }
+    }
+}
